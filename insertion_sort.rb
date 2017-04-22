@@ -1,22 +1,21 @@
-require 'pry'
+def insert(array, right_index, value)
+  i = right_index
 
-def insertion(array, right_index, value)
-	i = right_index
-	while (i >= 0 && array[i] > value)
-		array[i+1] = array[i]
-		i -= 1
-	end
-	array[i + 1] = value
+  while i >= 0 && array[i] > value
+    array[i+1] = array[i]
+    i -= 1
+  end
+
+  array[i+1] = value
 end
 
-def insertion_sort(arr)
-	counter = 0
-	while counter < arr.length-1
-		insertion(arr, counter, arr[counter+1])
-		counter += 1
-	end
-	arr
-	#binding.pry
+
+def insertion_sort(array)
+  (1...array.length).each do |i|
+    insert(array, i-1, array[i])
+  end
+  array
 end
 
-insertation_sort([1,3,7,-2,5])
+
+insertion_sort( [3,1,7,2,5] ) # => [1, 2, 3, 5, 7]
